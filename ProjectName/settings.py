@@ -35,7 +35,6 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware', # 跨域请求中间件
-    'middlewares.request_detect.RequestDetectMiddleware', # 请求身份识别中间件
     'django.middleware.common.CommonMiddleware',
     # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -121,9 +120,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-
-# ── 请求身份识别中间件配置 ──
-REQUEST_DETECT_API_URL   = f'{os.getenv("XIAOYING_API_BASE", "https://xiaoyingapi.com")}/api/request_detect/detect'  # 小影API地址
-REQUEST_DETECT_ENABLED   = True    # 是否启用本中间件（默认 False）
-REQUEST_DETECT_FAIL_OPEN = True    # 检测接口不可用时: True=放行, False=拒绝(403)
-REQUEST_DETECT_TIMEOUT   = 5       # 调用 detect 接口的超时秒数（默认 5）
